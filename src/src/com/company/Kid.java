@@ -1,15 +1,11 @@
 package src.com.company;
 
-class Kid extends Person implements Scare {
+import java.util.Objects;
 
-    @Override
-    public String getName() {
-        return "Малыш";
-    }
+class Kid extends Person {
 
-    @Override
-    public void getScared() {
-        System.out.println(getName() + " испугался");
+    Kid(String name, int age) {
+        super(name, age);
     }
 
     @Override
@@ -22,7 +18,7 @@ class Kid extends Person implements Scare {
 
     @Override
     public int hashCode() {
-        return getName().hashCode();
+        return Objects.hashCode(getName());
     }
 
     @Override

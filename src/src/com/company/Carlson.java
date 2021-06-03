@@ -4,12 +4,15 @@ import java.sql.SQLOutput;
 import java.util.Objects;
 
 class Carlson extends Person implements Noise {
-
+    
     private MayCreak mayCreak;
     private MayShine mayShine;
 
-    public Carlson(MayCreak mayCreak,
+    public Carlson(String name,
+                   int age,
+                   MayCreak mayCreak,
                    MayShine mayShine) {
+        super(name, age);
         this.mayCreak = mayCreak;
         this.mayShine = mayShine;
     }
@@ -30,11 +33,6 @@ class Carlson extends Person implements Noise {
         } catch (MayShineException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public String getName() {
-        return "Карлсон";
     }
 
     @Override

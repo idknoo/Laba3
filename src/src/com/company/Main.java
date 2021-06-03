@@ -3,7 +3,8 @@ package src.com.company;
 public class Main {
 
     public static void main(String[] args) {
-        MayCreak wire = new Wire();
+        Table table = new Table("Стол");
+        // MayCreak wire = new Wire();
         MayCreak mayCreak = new MayCreak() {
             @Override
             public void creak() {
@@ -11,46 +12,33 @@ public class Main {
             }
         };
         MayShine flashlight = new Flashlight();
-        Carlson carlson = new Carlson(mayCreak, flashlight);
-        carlson.seat();
-        // Kid kid = new Kid();
-        class LocalKid extends Person implements Scare {
-
-            @Override
-            public String getName() {
-                return "Малыш";
-            }
-
-            @Override
-            public void getScared() {
-                System.out.println(getName() + " испугался");
-            }
-        }
-        LocalKid kid = new LocalKid();
-        kid.seat();
-
-        kid.fallAsleep();
+        Carlson carlson = new Carlson(PersonNames.CARLSON.toString(), 29, mayCreak, flashlight);
+        carlson.setAction("сидит");
+        Kid kid = new Kid(PersonNames.KID.toString(), 5);
+        kid.setAction("сидит");
+        kid.setAction("теперь спит под " + table.getChangeName());
+        table.setChangeName("стола");
+        kid.setAction("вылезает из-под " + table.getChangeName());
+        kid.setAction("бодрствует");
         carlson.makeSomeNoise();
-        kid.wakeUp();
-        kid.getScared();
-        carlson.tell("Не бойся, малыш, все будет хорошо!", VoiceType.NORMAL);
+        carlson.tell("Не бойся, малыш, все будет хорошо!", Person.VoiceType.NORMAL);
 
-        Mummy mummy = new Mummy();
-        mummy.move();
-        kid.getScared();
-        mummy.tell("шшшш", VoiceType.WHISPER);
+        Mummy mummy = new Mummy(PersonNames.MUMMY.toString(), 300);
+        mummy.setAction("двигается");
+        kid.setAction("испугался");
+        mummy.tell("шшшш", Person.VoiceType.WHISPER);
         mummy.makeSomeNoise();
-        mummy.tell("ААА", VoiceType.SCREAM);
-        mummy.tell("ААА", VoiceType.SCREAM);
+        mummy.tell("ААА", Person.VoiceType.SCREAM);
+        mummy.tell("ААА", Person.VoiceType.SCREAM);
 
         carlson.turnOnLight();
         carlson.turnOnLight();
         carlson.turnOffLight();
         try {
-            mummy.tell("Говорит", VoiceType.NORMAL);
-        } catch(Mummy.MummyVoiceException e) {
+            mummy.tell("Говорит", Person.VoiceType.NORMAL);
+        } catch (Mummy.MummyVoiceException e) {
             System.out.println(e.getMessage());
         }
-        mummy.tell("ААА", VoiceType.SCREAM);
+        mummy.tell("ААА", Person.VoiceType.SCREAM);
     }
 }

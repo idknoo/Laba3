@@ -6,6 +6,6 @@ interface MayShine {
         ON,
         OFF
     }
-    
+
     void setState(ShineState state) throws MayShineException;
 }
